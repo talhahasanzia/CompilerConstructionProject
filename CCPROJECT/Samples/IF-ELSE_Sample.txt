@@ -1,0 +1,16 @@
+//IF-THEN-ELSE Condition:
+//Example:
+INTEGER Int1 IS 1.
+INTEGER Int2 IS 5.
+INTEGER Int3 IS 10.
+IF(Int1 EGREAT 1 OR Int3 ELESS 10)
+{
+THEN
+{
+Int1 IS Int2+Int3.
+}
+ELSE
+{
+Int2++.
+}
+}

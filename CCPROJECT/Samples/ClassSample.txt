@@ -1,0 +1,22 @@
+//Syntax,
+
+/* 
+CLASS [Name]
+{
+//Implementation
+}
+
+*/
+
+//Example:
+
+
+CLASS Calculator
+{
+INTEGER Sum.
+FUNCTION:Add_Func(INTEGER, INTEGER X1, INTEGER X2)
+{
+SUM IS X1+X2.
+RETURN Sum.
+}
+}

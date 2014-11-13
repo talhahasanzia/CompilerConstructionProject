@@ -1,0 +1,18 @@
+C:\Users\Aaqib Hussain\AppData\Local\Temporary Projects\CCPROJECT\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Users\Aaqib Hussain\AppData\Local\Temporary Projects\CCPROJECT\obj\x86\Release\CCPROJECT.Properties.Resources.resources
+C:\Users\Aaqib Hussain\AppData\Local\Temporary Projects\CCPROJECT\obj\x86\Release\GenerateResource.read.1.tlog
+C:\Users\Aaqib Hussain\AppData\Local\Temporary Projects\CCPROJECT\obj\x86\Release\GenerateResource.write.1.tlog
+C:\Users\Aaqib Hussain\AppData\Local\Temporary Projects\CCPROJECT\bin\Release\CCPROJECT.exe
+C:\Users\Aaqib Hussain\AppData\Local\Temporary Projects\CCPROJECT\bin\Release\CCPROJECT.pdb
+C:\Users\Aaqib Hussain\AppData\Local\Temporary Projects\CCPROJECT\obj\x86\Release\CCPROJECT.Form1.resources
+C:\Users\Aaqib Hussain\AppData\Local\Temporary Projects\CCPROJECT\obj\x86\Release\CCPROJECT.exe
+C:\Users\Aaqib Hussain\AppData\Local\Temporary Projects\CCPROJECT\obj\x86\Release\CCPROJECT.pdb
+C:\Users\Aaqib Hussain\documents\visual studio 2010\Projects\CCPROJECT\CCPROJECT\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Users\Aaqib Hussain\documents\visual studio 2010\Projects\CCPROJECT\CCPROJECT\obj\x86\Release\CCPROJECT.Form1.resources
+C:\Users\Aaqib Hussain\documents\visual studio 2010\Projects\CCPROJECT\CCPROJECT\obj\x86\Release\CCPROJECT.Properties.Resources.resources
+C:\Users\Aaqib Hussain\documents\visual studio 2010\Projects\CCPROJECT\CCPROJECT\obj\x86\Release\GenerateResource.read.1.tlog
+C:\Users\Aaqib Hussain\documents\visual studio 2010\Projects\CCPROJECT\CCPROJECT\obj\x86\Release\GenerateResource.write.1.tlog
+C:\Users\Aaqib Hussain\documents\visual studio 2010\Projects\CCPROJECT\CCPROJECT\obj\x86\Release\CCPROJECT.exe
+C:\Users\Aaqib Hussain\documents\visual studio 2010\Projects\CCPROJECT\CCPROJECT\obj\x86\Release\CCPROJECT.pdb
+C:\Users\Aaqib Hussain\documents\visual studio 2010\Projects\CCPROJECT\CCPROJECT\bin\Release\CCPROJECT.exe
+C:\Users\Aaqib Hussain\documents\visual studio 2010\Projects\CCPROJECT\CCPROJECT\bin\Release\CCPROJECT.pdb

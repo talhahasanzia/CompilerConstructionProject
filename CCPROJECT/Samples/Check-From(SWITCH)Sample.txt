@@ -1,0 +1,23 @@
+//CHECK-FROM Condition:
+//Works similar to switch.
+//Example:
+CHARAC Ch_255 IS ‘d’.
+CHECK(Ch_255)
+{
+FROM ‘a’:
+{
+//Implementation
+}
+FROM ‘b’:
+{
+//Implementation
+}
+FROM ‘d’:
+{
+//Implementation
+}
+ERROR:
+{
+//Implementation
+}
+}

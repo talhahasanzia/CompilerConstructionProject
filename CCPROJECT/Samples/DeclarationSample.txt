@@ -1,0 +1,18 @@
+//Decalaration:
+//[Datatype] [Identifier] .
+//(Note that dot in the end is terminator)
+//Examples:
+INTEGER Aint_1.
+FLOAT Fl_var.
+CHARAC Ch_ch1.
+STRING St_123.
+//Variable Initializations:
+Aint_1 IS 23.
+Fl_var IS -12.47.
+Ch_ch1 IS ‘y’.
+St_123 IS “name of place”.
+//OR:
+INTEGER Aint_1 IS 23.
+FLOAT Fl_var IS -12.47.
+CHARAC Ch_ch1 IS ‘y’.
+STRING St_123 IS “name of place”.

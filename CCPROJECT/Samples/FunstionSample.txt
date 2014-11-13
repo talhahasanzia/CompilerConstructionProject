@@ -1,0 +1,18 @@
+//FUNCTIONS:
+//Functions can be defined anywhere.Function name can only contain alphabets and underscores. Declaration syntax is,
+/*
+
+FUNCTION:[functionName](return type, param1, param2, ........ ,paramN)
+{
+// Implementation
+RETURN [variable].
+}
+
+*/
+//*if return type set to VOID , above statement is not valid.
+//Example:
+FUNCTION:Add_Func(INTEGER, INTEGER X1, INTEGER X2)
+{
+SUM IS X1+X2.
+RETURN SUM.
+}

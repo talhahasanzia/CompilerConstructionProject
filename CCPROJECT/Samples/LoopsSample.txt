@@ -1,0 +1,19 @@
+//UNTIL loop:
+//Works same as while in C/C++/C#.
+//Example:
+INTEGER Count IS 0.
+UNTIL(Count EQUALS 10)
+{
+Count++.
+}
+//*runs 10 times.
+//RUN-UNTIL loop:
+//Works same as do-while in C/C++/C#.
+//Example:
+INTEGER Count IS 0.
+RUN
+{
+Count++.
+}
+UNTIL(Count EQUALS 10).
+//*runs 11 times.
