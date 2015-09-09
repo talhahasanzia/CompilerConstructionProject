@@ -24,3 +24,5 @@ C:\Users\Talha\Documents\Visual Studio 2013\Projects\CCPROJECT\CCPROJECT\obj\x86
 C:\Users\Talha\Documents\Visual Studio 2013\Projects\CCPROJECT\CCPROJECT\obj\x86\Debug\CCPROJECT.Form1.resources
 C:\Users\Talha\Documents\Visual Studio 2013\Projects\CCPROJECT\CCPROJECT\obj\x86\Debug\CCPROJECT.Properties.Resources.resources
 C:\Users\Talha\Documents\Visual Studio 2013\Projects\CCPROJECT\CCPROJECT\obj\x86\Debug\CCPROJECT.csproj.GenerateResource.Cache
+F:\Github\CompilerConstructionProject\CCPROJECT\obj\x86\Debug\CCPROJECT.exe
+F:\Github\CompilerConstructionProject\CCPROJECT\obj\x86\Debug\CCPROJECT.pdb

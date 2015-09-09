@@ -659,6 +659,17 @@ char[] varLook=str.ToCharArray();
 
 
                 }
+                else
+                {
+                    // if none of above correct words detected
+                    // there must be error
+                    Counter++;
+                    string str = string.Join("LE_", LineArr[k]);
+                    str = str.Trim('\0');                           // trim any extra null characters
+                    WordsList.Add(str);  
+                
+                
+                }
 
             }
                 catch(IndexOutOfRangeException ex)
