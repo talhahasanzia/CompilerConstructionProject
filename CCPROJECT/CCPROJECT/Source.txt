@@ -1,0 +1,14 @@
+INTEGER Count IS 12.
+
+FUNCTION:MAIN()
+{
+
+
+UNTIL(Count EQUALS Fuck AND Nobodygivesshit)
+{
+
+Count++.
+
+}
+
+}
