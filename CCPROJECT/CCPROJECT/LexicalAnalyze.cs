@@ -31,6 +31,7 @@ namespace CCPROJECT
             {"OR","Conditional"},
             {"FUNCTION","Function"},
             {"CLASS","Class"},
+            {"ENUM","Enum"},
             {"CHECK","Check"},
             {"FROM","From"},
             {"IF","If"},
@@ -38,8 +39,8 @@ namespace CCPROJECT
             {"ELSE","Else"},
             {"UNTIL","Until"},
             {"RUN","Run"},
-            {"TERMINATE","Break"},
-            {"NEXT","Continue"},
+            {"STOP","Break"},
+            {"CARRYON","Continue"},
             {"VOID","Void"},
             {"ERROR","Error"},
             {"+","AddSubOp"},
@@ -48,6 +49,7 @@ namespace CCPROJECT
             {"/","MulDivOp"},
             {"++","Inc_Dec"},
             {"--","Inc_Dec"},
+            {",","Comma"},
             {".","LineBreak"},
             {"{", "OpenScope"},
             {"}","CloseScope"},
@@ -74,7 +76,13 @@ namespace CCPROJECT
 
         public LexicalAnalyze(string In_Text)
         {
+
+            ; ;
             StreamWriter sr = new StreamWriter(@"../../Token.txt");
+
+            ; ;
+            ;
+            ;
             try
             {
               
@@ -189,7 +197,22 @@ namespace CCPROJECT
             foreach (string str in Words)
             {
 
-
+                if (str == ":")
+                {
+                    Token[count, 0] = "Colon";
+                    Token[count, 1] = str;
+                    Token[count, 2] = Convert.ToString(Current_Line_Number);
+                    count++;
+                    continue;
+                }
+                if (str == ">")
+                {
+                    Token[count, 0] = "Member";
+                    Token[count, 1] = str;
+                    Token[count, 2] = Convert.ToString(Current_Line_Number);
+                    count++;
+                    continue;
+                }
                 //First Check For Lexical Error
                 if (str[0] == 'L' && str[1] == 'E' && str[2] == '_')
                 {
@@ -498,7 +521,7 @@ char[] varLook=str.ToCharArray();
                 {
                     bool Plus = false; bool Minus = false; bool Divide = false; 
                     // If +  then check for ++
-                    if (LineArr[k] == '+' )
+                    if (LineArr[k] == '+')
                     {
                         Plus = true;
                         try

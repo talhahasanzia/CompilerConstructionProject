@@ -10,9 +10,10 @@ namespace CCPROJECT
         static int CurrentIndex= 0;
        static bool IsSender = false;
         
-        public static bool Starting()
+        public static bool 
+            Starting()
         {
-            if (FunctionDec() || Declaration() || Initialization() || MAIN_Function() || ClassDec())
+            if (FunctionDec() || Declaration() || Initialization() || MAIN_Function() || ClassDec() || Enum())
                 Starting();
 
             if (TokensArr[CurrentIndex] == "$")
@@ -49,18 +50,10 @@ namespace CCPROJECT
 
 
                                     CurrentIndex++;
-                                    if (Body())
+                                    if (FunctionBody())
                                     {
-                                        if (TokensArr[CurrentIndex] == "CloseScope")
-                                        {
 
-
-                                            CurrentIndex++;
-                                            return true;
-                                        }
-
-                                        
-
+                                        return true;
                                     }
                                 }
                             }
@@ -112,20 +105,13 @@ namespace CCPROJECT
 
                                     if (TokensArr[CurrentIndex] == "OpenScope")
                                     {
-
                                         CurrentIndex++;
-
-                                        if (Body())
+                                        if (FunctionBody())
                                         {
                                             
-
-                                            if (TokensArr[CurrentIndex] == "CloseScope")
-                                            {
-                                                CurrentIndex++;
-                                                return true;                        
-
-                                            }
+                                            return true;
                                         }
+                                        
                                     }
                                 }
                             }
@@ -142,7 +128,31 @@ namespace CCPROJECT
 
         }
 
+       public static bool FunctionBody()
+       {
+       int reset=CurrentIndex;
+       
+       
 
+           if ( Declaration() || Initialization() || Inc_Dec() || FunctionCall() || Return_St() || ClassMemberCalls() || Until_Loop() || Run_Until() || If_Then_Else() || Check_From())
+                                        {
+                                            
+               FunctionBody();
+               return true;
+                                           
+                                        }
+
+            if (TokensArr[CurrentIndex] == "CloseScope")
+                                            {
+                                                CurrentIndex++;
+                                                return true;                        
+
+                                            }
+
+       CurrentIndex=reset;
+       return false;
+       
+       }
         public static bool Parameters()
         {
 
@@ -155,7 +165,11 @@ namespace CCPROJECT
 
 
             }
-            
+
+
+            if (TokensArr[CurrentIndex] == "Comma")
+            {
+                CurrentIndex++;
                 if (TokensArr[CurrentIndex] == "DT")
                 {
                     CurrentIndex++;
@@ -166,11 +180,12 @@ namespace CCPROJECT
                         {
 
                             return true;
-                        
+
                         }
 
                     }
                 }
+            }
             
             CurrentIndex = reset;
             return false;
@@ -294,7 +309,7 @@ namespace CCPROJECT
         {
             int reset = CurrentIndex;
 
-            if (TokensArr[CurrentIndex] == "ID")
+            if (ClassMemberCalls() || TokensArr[CurrentIndex] == "ID" )
             {
                 CurrentIndex++;
                 if (TokensArr[CurrentIndex] == "Assignment")
@@ -369,7 +384,7 @@ namespace CCPROJECT
 
 
             IsSender = true;
-            if (CONST() || FunctionCall() || ClassMemberCalls()  || EXP() )
+            if (CONST() || FunctionCall() || ClassMemberCalls()  || EXP() || Enum_Calling())
                 return true;
             IsSender = false;
 
@@ -387,37 +402,38 @@ namespace CCPROJECT
         }
         public static bool Inc_Dec()
         {
-            int reset=CurrentIndex;
+            int reset = CurrentIndex;
 
             if (TokensArr[CurrentIndex] == "ID")
-            { 
-            CurrentIndex++;
+            {
+                CurrentIndex++;
                 if (TokensArr[CurrentIndex] == "Inc_Dec")
                 {
-                CurrentIndex++;
-                if (TokensArr[CurrentIndex] == "LineBreak")
-                {
                     CurrentIndex++;
-                    return true;
+                    if (TokensArr[CurrentIndex] == "LineBreak")
+                    {
+                        CurrentIndex++;
+                        return true;
+                    }
                 }
-                }
-            
+
             }
 
             CurrentIndex = reset;
             return false;
-
         }
+        
         public static bool Run_Until()
         {
             int reset = CurrentIndex;
+            
             if (TokensArr[CurrentIndex] == "Run")
             {
                 CurrentIndex++;
                 if (TokensArr[CurrentIndex] == "OpenScope")
                 {
                     CurrentIndex++;
-                    if (Body())
+                    if (Declaration() || Initialization() || Inc_Dec() || FunctionCall() || If_Then_Else() || Run_Until() || Until_Loop() || Check_From())
                     {
                         if (TokensArr[CurrentIndex] == "CloseScope")
                         {
@@ -495,7 +511,8 @@ namespace CCPROJECT
         }
         public static bool RelationalExp()
         {
-            int reset = CurrentIndex;
+            int reset
+                = CurrentIndex;
 
 
            
@@ -515,6 +532,7 @@ namespace CCPROJECT
                             return true;
                         
                         }
+
 
 
                     }
@@ -598,7 +616,7 @@ namespace CCPROJECT
                             if (TokensArr[CurrentIndex] == "OpenScope")
                             {
                                 CurrentIndex++;
-                                if (Body())
+                                if (Declaration() || Initialization() || Inc_Dec() || TerminateSt() || NextSt() || If_Then_Else() || FunctionCall() || Until_Loop() || Run_Until() )
                                 {
 
                                     if (TokensArr[CurrentIndex] == "CloseScope")
@@ -698,7 +716,7 @@ namespace CCPROJECT
         }
         public static bool ErrorSt()
         {
-
+            
             int reset = CurrentIndex;
 
             if (TokensArr[CurrentIndex] == "Error")
@@ -710,7 +728,7 @@ namespace CCPROJECT
                     if (TokensArr[CurrentIndex] == "OpenScope")
                     {
                         CurrentIndex++;
-                        if (Body())
+                        if (Declaration() || Initialization() || Inc_Dec() || FunctionCall() || TerminateSt() || NextSt() || Return_St() || Until_Loop() || Run_Until() || If_Then_Else())
                         {
 
                             if (TokensArr[CurrentIndex] == "CloseScope")
@@ -743,7 +761,7 @@ namespace CCPROJECT
                     if (TokensArr[CurrentIndex] == "OpenScope")
                     {
                         CurrentIndex++;
-                        if (Body())
+                        if (Declaration() || Initialization() || Inc_Dec() || FunctionCall() || TerminateSt() || NextSt() || Return_St() || Until_Loop() || Run_Until() || If_Then_Else() )
                         {
 
                             if (TokensArr[CurrentIndex] == "CloseScope")
@@ -822,7 +840,7 @@ namespace CCPROJECT
                                 if (TokensArr[CurrentIndex] == "OpenScope")
                                 {
                                     CurrentIndex++;
-                                    if (Body())
+                                    if (Declaration() || Initialization() || Inc_Dec() || FunctionCall() ||  Until_Loop() || Run_Until() || If_Then_Else())
                                     {
 
                                         if (TokensArr[CurrentIndex] == "CloseScope")
@@ -835,7 +853,7 @@ namespace CCPROJECT
                                                 if (TokensArr[CurrentIndex] == "OpenScope")
                                                 {
                                                     CurrentIndex++;
-                                                    if (Body())
+                                                    if (Declaration() || Initialization() || Inc_Dec() || FunctionCall() || TerminateSt() || NextSt() || Return_St() || Until_Loop() || Run_Until() || If_Then_Else())
                                                     {
                                                         if (TokensArr[CurrentIndex] == "CloseScope")
                                                         {
@@ -898,8 +916,8 @@ namespace CCPROJECT
             if (SingleSt())
                 return true;
 
-            if (TokensArr[CurrentIndex] == "CloseScope")
-                return true;
+          //  if (TokensArr[CurrentIndex] == "CloseScope")
+               // return true;
 
             CurrentIndex = reset;
             return false;
@@ -909,7 +927,11 @@ namespace CCPROJECT
         {
             int reset = CurrentIndex;
 
-            if (Declaration() || Initialization() || Inc_Dec() || FunctionCall() || TerminateSt() || NextSt() || Return_St() || Until_Loop() || Run_Until() || If_Then_Else() || Check_From())
+            if (CurrentIndex == TokensArr.Length)
+                return true;
+
+
+            if (Declaration() || Initialization()  || Inc_Dec() || FunctionCall() || ClassMemberCalls() || TerminateSt() || NextSt() || Return_St() || FunctionDec() || Until_Loop() || Run_Until() || If_Then_Else() || Check_From())
                 return true;
 
 
@@ -922,6 +944,9 @@ namespace CCPROJECT
         {
             int reset = CurrentIndex;
 
+            
+
+
             if (SingleSt())
             {
                 if (Multiple_St())
@@ -929,13 +954,12 @@ namespace CCPROJECT
                 else
                     return false;
             
-            }
+            }            
+        //    else if (TokensArr[CurrentIndex] == "CloseScope")
+         //  {
 
-            else if (TokensArr[CurrentIndex] == "CloseScope")
-            {
-
-                return true;
-            }
+           //     return true;
+         //   }
             else
             {
                 CurrentIndex = reset;
@@ -1046,8 +1070,6 @@ namespace CCPROJECT
                         CurrentIndex++;
                         if (CallParameters())
                         {
-
-
                             return true;
 
                         }
@@ -1107,7 +1129,6 @@ namespace CCPROJECT
         {
 
             int reset = CurrentIndex;
-
 
             if (TokensArr[CurrentIndex] == "CloseParenthesis")
             {
@@ -1185,7 +1206,7 @@ namespace CCPROJECT
         {
             int reset = CurrentIndex;
 
-            if (Body())
+            if (Declaration() || Initialization() || Inc_Dec())
             {
 
                 if (ClassBody())
@@ -1247,19 +1268,13 @@ namespace CCPROJECT
                         CurrentIndex++;
                         return true;
 
-                        
+
                     }
 
 
-
-
                 }
-            
-            
-            
-            
-            }
 
+            }
 
             CurrentIndex = reset;
             return false;
@@ -1269,53 +1284,126 @@ namespace CCPROJECT
         {
 
             int reset = CurrentIndex;
-            if (TokensArr[CurrentIndex] == "ID")
-            {
-                CurrentIndex++;
-                if (TokensArr[CurrentIndex] == "Member")
-                {
-                    CurrentIndex++;
-                    if (TokensArr[CurrentIndex] == "ID")
-                    {
-                        CurrentIndex++;
-                        return true;
+           
+            //here
+           CurrentIndex = reset;
+           if (TokensArr[CurrentIndex] == "ID")
+           {
+               CurrentIndex++;
+               if (TokensArr[CurrentIndex] == "Member")
+               {
+                   CurrentIndex++;
+                  
+                       if (FunctionCall())
+                       {
 
 
-                        
-
-                    }
-                    else
-                    {
-                        IsSender = true;
-                        if (FunctionCall())
-                        {
+                           return true;
 
 
-                            return true;
-                        
-                        
-                        }
+                       }
 
-                        IsSender = false;
-                        if (EXP())
-                        {
+                       
+                   }
 
 
-                            return true;
+
+              }
+
+           CurrentIndex = reset;
+           if (TokensArr[CurrentIndex] == "ID")
+           {
+               CurrentIndex++;
+               if (TokensArr[CurrentIndex] == "Member")
+               {
+                   CurrentIndex++;
+
+                   if (EXP() )
+                   {
 
 
-                        }
-                    }
-                
-                
-                
-                }
-            
-            
-            
-            
-            }
+                       return true;
 
+
+                   }
+
+
+               }
+
+
+
+           }
+           CurrentIndex = reset;
+           if (TokensArr[CurrentIndex] == "ID")
+           {
+               CurrentIndex++;
+               if (TokensArr[CurrentIndex] == "Member")
+               {
+                   CurrentIndex++;
+
+                   if ( Inc_Dec() )
+                   {
+
+
+                       return true;
+
+
+                   }
+
+
+               }
+
+
+
+           }
+           CurrentIndex = reset;
+           if (TokensArr[CurrentIndex] == "ID")
+           {
+               CurrentIndex++;
+               if (TokensArr[CurrentIndex] == "Member")
+               {
+                   CurrentIndex++;
+
+                   if ( Enum_Calling())
+                   {
+
+
+                       return true;
+
+
+                   }
+
+
+               }
+
+
+
+           }
+
+           CurrentIndex = reset;
+           if (TokensArr[CurrentIndex] == "ID")
+           {
+               CurrentIndex++;
+               if (TokensArr[CurrentIndex] == "Member")
+               {
+                   CurrentIndex++;
+                   if (TokensArr[CurrentIndex] == "ID")
+                   {
+                       CurrentIndex++;
+                       return true;
+
+
+
+
+                   }
+
+               }
+
+
+
+
+           }
+           
 
 
 
@@ -1385,10 +1473,9 @@ namespace CCPROJECT
         static bool AND()
         {
             bool Flag = false;
-           
-
-           
                 if (RE())
+
+
                 {
 
                     if (AND1())
@@ -1569,6 +1656,105 @@ namespace CCPROJECT
 
             CurrentIndex = reset;
             return false;
+        }
+
+
+        public static bool Enum()
+        {
+            int reset = CurrentIndex;
+            if (TokensArr[CurrentIndex] == "Enum")
+            {
+                CurrentIndex++;
+                if (TokensArr[CurrentIndex] == "ID")
+                {
+                    CurrentIndex++;
+                    if (TokensArr[CurrentIndex] == "OpenScope")
+                    {
+                        CurrentIndex++;
+                        if (EnumBody())
+                        {
+                            return true;
+                        }
+
+                    }
+
+                }
+            }
+            CurrentIndex = reset;
+            return false;
+
+        }
+
+        public static bool EnumBody()
+        {
+            int reset = CurrentIndex;
+            
+            if (TokensArr[CurrentIndex] == "ID")
+            {
+                CurrentIndex++;
+                if (EnumBody2())
+                {
+                    return true;
+                }
+            }
+            CurrentIndex = reset;
+            return false;
+
+        }
+
+        public static bool EnumBody2()
+        {
+            int reset = CurrentIndex;
+            if (TokensArr[CurrentIndex] == "Comma")
+            {
+                CurrentIndex++;
+                if (TokensArr[CurrentIndex] == "ID")
+                {
+                    CurrentIndex++;
+                    if (EnumBody2())
+                    {
+                        return true;
+                    }
+                }
+            }
+            else if(TokensArr[CurrentIndex]=="CloseScope")
+            {
+                CurrentIndex++;
+                return true;
+            }
+            CurrentIndex = reset;
+            return false;
+        }
+
+        public static bool Enum_Calling()
+        {
+            int reset = CurrentIndex;
+            if (TokensArr[CurrentIndex] == "ID")
+            {
+                CurrentIndex++;
+                if (TokensArr[CurrentIndex] == "Member")
+                {
+                    CurrentIndex++;
+                    if (TokensArr[CurrentIndex] == "ID")
+                    {
+                        CurrentIndex++;
+                        if (TokensArr[CurrentIndex] == "LineBreak")
+                        {
+                            CurrentIndex++;
+                            return true;
+                        }
+                    }
+                }
+            
+            }
+
+
+
+
+
+            reset = CurrentIndex;
+            return false;
+
         }
 
     }
